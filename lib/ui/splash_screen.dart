@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:a_eye/ui/tab_view.dart';
+import 'package:vision_app/ui/tab_view.dart';
+import 'package:vision_app/ui/voice_screen.dart';
 import 'package:volume_controller/volume_controller.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -63,7 +64,7 @@ class SplashScreenState extends State<SplashScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              'assets/A-EYE-logos_black.png',
+              'assets/app_logo.png',
               width: animation!.value * 250,
               //height: animation!.value * 250,
             ),

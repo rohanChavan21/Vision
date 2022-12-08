@@ -7,9 +7,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:a_eye/ui/CurrencyRcg/currency_recognition.dart';
-import 'package:a_eye/ui/FaceDtc/face_recognition_screen.dart';
-import 'package:a_eye/ui/ObjDtc/object_detection_screen.dart';
+import 'package:vision_app/ui/CurrencyRcg/currency_recognition.dart';
+import 'package:vision_app/ui/FaceDtc/face_recognition_screen.dart';
+import 'package:vision_app/ui/ObjDtc/object_detection_screen.dart';
 import 'package:shake/shake.dart';
 import 'package:telephony/telephony.dart';
 
@@ -40,16 +40,16 @@ class _TabViewScreenState extends State<TabViewScreen>
   // }
 
   static const List<Tab> _tabs = [
-    Tab(icon: Icon(FontAwesomeIcons.shapes), child: Text('Object Detection')),
+    // Tab(icon: Icon(FontAwesomeIcons.shapes), child: Text('Object Detection')),
     Tab(icon: Icon(FontAwesomeIcons.moneyBills), text: 'Currency Recognition'),
-    Tab(icon: Icon(FontAwesomeIcons.faceSmile), text: 'Face Recognition'),
+    // Tab(icon: Icon(FontAwesomeIcons.faceSmile), text: 'Face Recognition'),
   ];
 
   static const List<Widget> _views = [
     //ObjectDetection(),
-    Obj(),
+    // Obj(),
     CurrencyRecognitionScreen(),
-    FaceRcg(),
+    // FaceRcg(),
     //FaceRecognition(),
   ];
 
@@ -129,10 +129,13 @@ class _TabViewScreenState extends State<TabViewScreen>
           String alt = (position.altitude).toString();
           String speed = (position.speed).toString();
           String timestamp = (position.timestamp).toString();
+          String locationLink =
+              'https://www.google.com/maps/search/?api=1&query=${lat},${long}';
           telephony.sendSms(
             to: phoneNumber1!.text + ';' + phoneNumber2!.text,
             message:
-                "I needs your help, last seen at: Latitude: $lat, Longitude: $long, Altitude: $alt, Speed: $speed, Time: $timestamp",
+                // "I need your help, last seen at: Latitude: $lat, Longitude: $long, Altitude: $alt, Speed: $speed, Time: $timestamp",
+                "I need your help, My location is also shared please some quickly. Location: $locationLink",
             statusListener: (status) async {
               switch (status) {
                 case SendStatus.SENT:
@@ -270,7 +273,7 @@ class _TabViewScreenState extends State<TabViewScreen>
               tabs: _tabs,
             ),
             title: const Text(
-              'A-EYE',
+              'Vision App',
               textAlign: TextAlign.center,
               //style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
             ),
@@ -287,137 +290,137 @@ class _TabViewScreenState extends State<TabViewScreen>
   }
 }
 
-class Obj extends StatefulWidget {
-  const Obj({Key? key}) : super(key: key);
+// class Obj extends StatefulWidget {
+//   const Obj({Key? key}) : super(key: key);
 
-  @override
-  State<Obj> createState() => _ObjState();
-}
+//   @override
+//   State<Obj> createState() => _ObjState();
+// }
 
-class _ObjState extends State<Obj> {
-  final FlutterTts flutterTts = FlutterTts();
+// class _ObjState extends State<Obj> {
+//   final FlutterTts flutterTts = FlutterTts();
 
-  void speak() async {
-    await flutterTts.setLanguage("en-US");
+//   void speak() async {
+//     await flutterTts.setLanguage("en-US");
 
-    await flutterTts
-        .setVoice({"name": "en-gb-x-gbb-network", "locale": "en-GB"});
-    await flutterTts.awaitSpeakCompletion(false);
-    await flutterTts.speak(
-        "Object Detection Screen. Tap anywhere to start detection or swipe left for currency recognition.");
-  }
+//     await flutterTts
+//         .setVoice({"name": "en-gb-x-gbb-network", "locale": "en-GB"});
+//     await flutterTts.awaitSpeakCompletion(false);
+//     await flutterTts.speak(
+//         "Object Detection Screen. Tap anywhere to start detection or swipe left for currency recognition.");
+//   }
 
-  @override
-  void initState() {
-    super.initState();
-    speak();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     speak();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: GestureDetector(
-        onTap: () {
-          Navigator.of(context)
-              .push(
-            MaterialPageRoute(
-              builder: (_) => const ObjectDetection(),
-            ),
-          )
-              .then(
-            (_) async {
-              await flutterTts.awaitSpeakCompletion(false);
-              await flutterTts.speak(
-                "Object Detection Screen. Tap anywhere to start detection or swipe left for currency recognition.",
-              );
-            },
-          );
-        },
-        child: SingleChildScrollView(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Padding(
-                padding:
-                    EdgeInsets.only(top: 80, left: 15, right: 15, bottom: 15),
-                child: Text(
-                  'Tap anywhere on the screen to start detection',
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Lottie.asset('./assets/objectDtc.json'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       body: GestureDetector(
+//         onTap: () {
+//           Navigator.of(context)
+//               .push(
+//             MaterialPageRoute(
+//               builder: (_) => const ObjectDetection(),
+//             ),
+//           )
+//               .then(
+//             (_) async {
+//               await flutterTts.awaitSpeakCompletion(false);
+//               await flutterTts.speak(
+//                 "Object Detection Screen. Tap anywhere to start detection or swipe left for currency recognition.",
+//               );
+//             },
+//           );
+//         },
+//         child: SingleChildScrollView(
+//           child: Column(
+//             //mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               const Padding(
+//                 padding:
+//                     EdgeInsets.only(top: 80, left: 15, right: 15, bottom: 15),
+//                 child: Text(
+//                   'Tap anywhere on the screen to start detection',
+//                   style: TextStyle(fontSize: 18),
+//                   textAlign: TextAlign.center,
+//                 ),
+//               ),
+//               Lottie.asset('./assets/objectDtc.json'),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class FaceRcg extends StatefulWidget {
-  const FaceRcg({Key? key}) : super(key: key);
+// class FaceRcg extends StatefulWidget {
+//   const FaceRcg({Key? key}) : super(key: key);
 
-  @override
-  State<FaceRcg> createState() => _FaceRcgState();
-}
+//   @override
+//   State<FaceRcg> createState() => _FaceRcgState();
+// }
 
-class _FaceRcgState extends State<FaceRcg> {
-  final FlutterTts flutterTts = FlutterTts();
+// class _FaceRcgState extends State<FaceRcg> {
+//   final FlutterTts flutterTts = FlutterTts();
 
-  void speak() async {
-    await flutterTts.setLanguage("en-US");
+//   void speak() async {
+//     await flutterTts.setLanguage("en-US");
 
-    await flutterTts
-        .setVoice({"name": "en-gb-x-gbb-network", "locale": "en-GB"});
-    await flutterTts.awaitSpeakCompletion(false);
-    await flutterTts.speak(
-        "Face recognition Screen. Tap anywhere to start recognizing or swipe right for currency recognition.");
-  }
+//     await flutterTts
+//         .setVoice({"name": "en-gb-x-gbb-network", "locale": "en-GB"});
+//     await flutterTts.awaitSpeakCompletion(false);
+//     await flutterTts.speak(
+//         "Face recognition Screen. Tap anywhere to start recognizing or swipe right for currency recognition.");
+//   }
 
-  @override
-  void initState() {
-    super.initState();
-    speak();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     speak();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: GestureDetector(
-        onTap: () => Navigator.of(context)
-            .push(
-          MaterialPageRoute(
-            builder: (_) => const FaceRecognition(),
-          ),
-        )
-            .then(
-          (_) async {
-            await flutterTts.awaitSpeakCompletion(false);
-            await flutterTts.speak(
-                "Face recognition Screen. Tap anywhere to start recognizing or swipe right for currency recognition.");
-          },
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Padding(
-                padding:
-                    EdgeInsets.only(top: 80, left: 15, right: 15, bottom: 30),
-                child: Text(
-                  'Tap anywhere on the screen to start recognizing',
-                  style: TextStyle(fontSize: 18),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Lottie.asset('./assets/faceRcg.json',
-                  width: MediaQuery.of(context).size.width - 80)
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       body: GestureDetector(
+//         onTap: () => Navigator.of(context)
+//             .push(
+//           MaterialPageRoute(
+//             builder: (_) => const FaceRecognition(),
+//           ),
+//         )
+//             .then(
+//           (_) async {
+//             await flutterTts.awaitSpeakCompletion(false);
+//             await flutterTts.speak(
+//                 "Face recognition Screen. Tap anywhere to start recognizing or swipe right for currency recognition.");
+//           },
+//         ),
+//         child: SingleChildScrollView(
+//           child: Column(
+//             children: [
+//               const Padding(
+//                 padding:
+//                     EdgeInsets.only(top: 80, left: 15, right: 15, bottom: 30),
+//                 child: Text(
+//                   'Tap anywhere on the screen to start recognizing',
+//                   style: TextStyle(fontSize: 18),
+//                   textAlign: TextAlign.center,
+//                 ),
+//               ),
+//               Lottie.asset('./assets/faceRcg.json',
+//                   width: MediaQuery.of(context).size.width - 80)
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

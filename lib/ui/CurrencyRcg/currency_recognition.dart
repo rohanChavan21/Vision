@@ -30,7 +30,7 @@ class _CurrencyRecognitionScreenState extends State<CurrencyRecognitionScreen> {
         .setVoice({"name": "en-gb-x-gbb-network", "locale": "en-GB"});
     await flutterTts.awaitSpeakCompletion(false);
     await flutterTts.speak(
-        "Currency recognition screen. Tap anywhere on the screen to open camera or swipe left for Face recognition");
+        "Currency recognition screen. Tap anywhere on the screen to open camera and then click to take a picture");
     //await flutterTts.speak("Swipe left for face recognition");
   }
 
@@ -140,7 +140,7 @@ class _CurrencyRecognitionScreenState extends State<CurrencyRecognitionScreen> {
             ),
             Text(
               category != null
-                  ? 'Confidence: ${category!.score.toStringAsFixed(3)}'
+                  ? 'Confidence: ${(category!.score * 100).toStringAsFixed(3)}'
                   : '',
               style: const TextStyle(fontSize: 16),
             ),

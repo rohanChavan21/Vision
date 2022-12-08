@@ -1,11 +1,7 @@
-ten rupee note 
-twenty rupee note
-fifty rupee note
-hundred rupee note
-five hundred rupee note
-two thousand note
-one rupee coin
-two rupee coin
-five rupee coin
-ten rupee coin
-two hundred note
+10 rupees
+20 rupees
+50 rupees
+100 rupees
+200 rupees
+500 rupees
+2000 rupees
