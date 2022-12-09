@@ -59,7 +59,8 @@ class SplashScreenState extends State<SplashScreen>
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: const Color.fromARGB(255, 247, 191, 80),
+        // color: const Color.fromARGB(255, 247, 191, 80),
+        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
